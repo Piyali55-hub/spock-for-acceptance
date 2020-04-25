@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        request-channel:
+          destination: request-exchange
+          contentType: text/plain
+        response-channel:
+          destination: response-exchange
+          contentType: text/plain
+      rabbit:
+        bindings:
+          response-channel:
+            producer:
+              routingKeyExpression: ${STORE_ID}
+server:
+  port: 9501
+
+STORE_ID: 1234
